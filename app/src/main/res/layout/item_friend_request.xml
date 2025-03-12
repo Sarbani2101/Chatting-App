@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="horizontal"
+    android:background="@color/white">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ic_default_profile_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/caros_font"
+        android:paddingStart="10dp"
+        android:text="Sarbani Basak"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/profileIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,RtlSymmetry" />
+
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/light_day"
+        android:fontFamily="@font/circular_font"
+        android:text="Accept"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/profileIcon"
+        app:layout_constraintTop_toBottomOf="@+id/usernameTextView"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/rejectButton"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/circular_font"
+        android:text="Reject"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/acceptButton"
+        app:layout_constraintTop_toBottomOf="@+id/usernameTextView"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/txtFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/circular_font"
+        android:text="Friend"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/profileIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/txtNoFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="196dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/circular_font"
+        android:visibility="gone"
+        android:text="Cancel Friend"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/profileIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
