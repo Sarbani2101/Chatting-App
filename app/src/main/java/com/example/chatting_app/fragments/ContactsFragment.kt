@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.chatting_app.R
 import com.example.chatting_app.adapter.ContactsAdapter
 import com.example.chatting_app.databinding.FragmentContactsBinding
 import com.example.chatting_app.dataclass.Contact
@@ -22,7 +21,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 
 class ContactsFragment : Fragment() {
 

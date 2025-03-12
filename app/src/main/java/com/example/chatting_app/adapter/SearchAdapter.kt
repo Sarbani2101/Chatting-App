@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatting_app.R
-import com.example.chatting_app.dataclass.ChatItem
 import com.example.chatting_app.dataclass.User
 
 class SearchAdapter(

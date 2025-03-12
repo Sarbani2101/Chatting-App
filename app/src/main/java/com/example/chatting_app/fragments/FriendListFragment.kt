@@ -31,7 +31,7 @@ class FriendListFragment : Fragment(), AddFriendAdapter.OnFriendRequestClickList
 
         // Set up RecyclerView
         binding.addFriendRecyclerview.layoutManager = LinearLayoutManager(requireContext())
-        addFriendAdapter = AddFriendAdapter(requireContext(), userList, this)
+        addFriendAdapter = AddFriendAdapter(requireContext(), userList)
         binding.addFriendRecyclerview.adapter = addFriendAdapter
 
         // Step 1: Fetch accepted and unfriended users

@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.IOException
 import java.util.Locale
 
+@Suppress("DEPRECATION")
 class EditFragment : Fragment() {
 
     private lateinit var binding: FragmentEditBinding
@@ -114,6 +114,7 @@ class EditFragment : Fragment() {
     }
 
     // Convert latitude and longitude to address using Geocoder
+    @SuppressLint("SetTextI18n")
     private fun convertLatLngToAddress(latitude: Double, longitude: Double) {
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
         try {
@@ -167,7 +168,4 @@ class EditFragment : Fragment() {
             }
     }
 
-    companion object {
-        private const val TAG = "EditFragment"
-    }
 }

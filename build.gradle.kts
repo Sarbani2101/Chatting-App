@@ -7,6 +7,7 @@ plugins {
 
 buildscript{
     dependencies{
+        //noinspection UseTomlInstead
         classpath ("com.google.gms:google-services:4.4.2")
     }
 }

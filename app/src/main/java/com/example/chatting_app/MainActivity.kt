@@ -1,19 +1,17 @@
 package com.example.chatting_app
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.chatting_app.databinding.ActivityMainBinding
-import com.example.chatting_app.fragments.CallsFragment
 import com.example.chatting_app.fragments.ContactsFragment
 import com.example.chatting_app.fragments.FriendListFragment
 import com.example.chatting_app.fragments.FriendRequestFragment
 import com.example.chatting_app.fragments.MessageFragment
 import com.example.chatting_app.fragments.SettingsFragment
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

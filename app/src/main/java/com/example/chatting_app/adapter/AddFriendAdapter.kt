@@ -15,8 +15,7 @@ import com.google.firebase.database.*
 
 class AddFriendAdapter(
     private val context: Context,
-    private val userList: List<User>,
-    private val listener: OnFriendRequestClickListener
+    private val userList: List<User>
 ) : RecyclerView.Adapter<AddFriendAdapter.AddFriendViewHolder>() {
 
     interface OnFriendRequestClickListener {
@@ -39,7 +38,7 @@ class AddFriendAdapter(
         holder.userName.text = user.name
 
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val targetUserId = user.uid ?: return
+        val targetUserId = user.uid
 
         checkFriendStatus(currentUserId, targetUserId, holder)
 

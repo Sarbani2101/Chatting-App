@@ -10,12 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.chatting_app.R
 import com.example.chatting_app.adapter.SearchAdapter
 import com.example.chatting_app.databinding.FragmentSearchBinding
-import com.example.chatting_app.dataclass.ChatItem
 import com.example.chatting_app.dataclass.User
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

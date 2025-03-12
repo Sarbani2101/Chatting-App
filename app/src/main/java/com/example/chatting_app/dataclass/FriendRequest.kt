@@ -7,5 +7,4 @@ data class FriendRequest(
     val senderName: String,
     val profileImage: String = ""
 ){
-    constructor() : this ("", "", "", "")
 }

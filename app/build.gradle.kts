@@ -37,6 +37,7 @@ android {
 
     buildFeatures{
         viewBinding = true
+        //noinspection DataBindingWithoutKapt
         dataBinding = true
     }
 }
@@ -54,9 +55,9 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     //noinspection UseTomlInstead,GradleDependency
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
-    //noinspection UseTomlInstead
+    //noinspection GradleDependency,UseTomlInstead
     implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
-    //noinspection UseTomlInstead
+    //noinspection GradleDependency,UseTomlInstead
     implementation ("com.google.firebase:firebase-auth:23.1.0")
     //noinspection UseTomlInstead
     implementation("com.google.firebase:firebase-auth-ktx")
@@ -64,18 +65,24 @@ dependencies {
     implementation ("com.google.firebase:firebase-database:21.0.0")
     //noinspection UseTomlInstead
     implementation ("com.github.bumptech.glide:glide:4.15.1")
-    //noinspection UseTomlInstead
+    //noinspection GradleDependency,UseTomlInstead
     implementation ("com.google.firebase:firebase-firestore:25.1.1")
     //noinspection UseTomlInstead
     implementation ("com.google.firebase:firebase-storage:21.0.1")
     //noinspection UseTomlInstead
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    //noinspection UseTomlInstead,GradleDependency
     implementation ("com.google.android.gms:play-services-location:21.2.0")
 
+    //noinspection UseTomlInstead
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    //noinspection GradleDependency,UseTomlInstead
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    //noinspection UseTomlInstead,GradleDependency
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    //noinspection GradleDependency,UseTomlInstead
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+    //noinspection GradleDependency,UseTomlInstead
     implementation ("com.google.android.material:material:1.9.0")
 
 

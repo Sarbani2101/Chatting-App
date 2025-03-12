@@ -11,13 +11,14 @@
         android:id="@+id/backgroundImg"
         android:layout_width="match_parent"
         android:layout_height="515dp"
+        android:contentDescription="TODO"
         android:scaleType="fitXY"
         android:src="@drawable/ellipse_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="ContentDescription,HardcodedText,MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -27,7 +28,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/backgroundImg"
-        app:srcCompat="@drawable/logo_board" />
+        app:srcCompat="@drawable/logo_board"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView"
@@ -39,7 +41,7 @@
         android:textStyle="bold"
         android:text="@string/content_name"
         android:textColor="@color/white"
-        android:textSize="64dp"
+        android:textSize="64sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/backgroundImg" />
 
@@ -54,7 +56,8 @@
         android:textColor="#B9C1BE"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/imgFb"
@@ -64,7 +67,8 @@
         android:layout_marginTop="500dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/facebook" />
+        app:srcCompat="@drawable/facebook"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/imgGoogle"
@@ -75,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/google"
-        tools:ignore="DuplicateIds" />
+        tools:ignore="ContentDescription,DuplicateIds" />
 
     <View
         android:id="@+id/view"
@@ -99,7 +103,8 @@
         android:textColor="#D6E4E0"
         app:layout_constraintEnd_toStartOf="@+id/view_02"
         app:layout_constraintStart_toEndOf="@+id/view"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <View
         android:id="@+id/view_02"
@@ -125,7 +130,8 @@
         android:fontFamily="@font/caros_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/txtLog"
@@ -137,7 +143,8 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImg" />
+        app:layout_constraintTop_toTopOf="@+id/backgroundImg"
+        tools:ignore="HardcodedText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

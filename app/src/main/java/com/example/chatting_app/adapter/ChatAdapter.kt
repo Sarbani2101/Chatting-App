@@ -2,10 +2,8 @@ package com.example.chatting_app.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.chatting_app.R
 import com.example.chatting_app.databinding.ItemMessageReceivedBinding
 import com.example.chatting_app.databinding.ItemMessageSentBinding
 import com.example.chatting_app.dataclass.Message
@@ -46,7 +44,7 @@ class ChatAdapter(
             holder.binding.messageText.text = message.message
             holder.binding.txtTime.text = formatTime(message.timestamp)
         } else if (holder is ReceiveViewHolder) {
-            (holder as ReceiveViewHolder).binding.messageText.text = message.message
+            holder.binding.messageText.text = message.message
             holder.binding.txtTime.text = formatTime(message.timestamp)
         }
     }
