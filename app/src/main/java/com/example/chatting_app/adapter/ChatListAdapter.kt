@@ -27,19 +27,16 @@ class ChatListAdapter(private val onChatClick: (Chat) -> Unit) :
             binding.chatUserName.text = chat.receiverName
             binding.chatMessagePreview.text = chat.lastMessage
 
-            // ✅ Show unread count if not read
             if (!chat.isRead) {
                 binding.unreadIndicator.visibility = View.VISIBLE
             } else {
                 binding.unreadIndicator.visibility = View.GONE
             }
 
-            // ✅ Load profile image using Glide
             Glide.with(binding.userProfileImage.context)
                 .load(chat.profileImageUrl)
                 .into(binding.userProfileImage)
 
-            // ✅ Timestamp formatting
             binding.chattime.text = android.text.format.DateUtils.getRelativeTimeSpanString(
                 chat.timestamp, System.currentTimeMillis(), android.text.format.DateUtils.MINUTE_IN_MILLIS
             )

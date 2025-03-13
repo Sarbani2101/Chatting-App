@@ -67,7 +67,9 @@ class ContactsFragment : Fragment() {
             Context.RECEIVER_EXPORTED
         )
 
+        binding.contactProgress.visibility = View.VISIBLE
         fetchAcceptedFriends()
+
 
         return binding.root
     }
@@ -85,6 +87,8 @@ class ContactsFragment : Fragment() {
 
         friendsRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                binding.contactProgress.visibility = View.GONE
+                binding.noContactsText.visibility = if (snapshot.childrenCount == 0L) View.VISIBLE else View.GONE
                 acceptedFriendsList.clear()
                 for (childSnapshot in snapshot.children) {
                     val friendId = childSnapshot.key
@@ -97,12 +101,14 @@ class ContactsFragment : Fragment() {
 
             override fun onCancelled(error: DatabaseError) {
                 Log.e("ContactsFragment", "Error fetching accepted friends: ${error.message}")
+
             }
         })
     }
 
     private fun fetchContacts() {
         val currentUserId = auth.currentUser?.uid ?: return
+
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -126,6 +132,7 @@ class ContactsFragment : Fragment() {
 
             override fun onCancelled(error: DatabaseError) {
                 Log.e("ContactsFragment", "Error fetching contacts: ${error.message}")
+
             }
         })
     }

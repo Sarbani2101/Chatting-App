@@ -1,6 +1,7 @@
 package com.example.chatting_app.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -33,6 +34,15 @@ class ChatActivity : AppCompatActivity() {
         friendId = intent.getStringExtra("friendId")
         val friendName = intent.getStringExtra("friendName")
         val profileImage = intent.getStringExtra("profileImage")
+
+        binding.backImg.setOnClickListener {
+            finish()
+        }
+
+        binding.userName.setOnClickListener {
+            val intent = Intent(this, UserActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.userName.text = friendName
         Glide.with(this)

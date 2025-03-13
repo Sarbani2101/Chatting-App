@@ -54,15 +54,18 @@ class MessageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (currentUserId != null) {
-            // ✅ Fetch location from Firebase
             fetchUserLocation(currentUserId)
         }
 
-        // ✅ Observe data from ViewModel
         observeData()
         observeChatList()
+    }
+
+    override fun onResume() {
+        super.onResume()
         chatViewModel.fetchChatList()
     }
+
 
     private fun fetchUserLocation(userId: String) {
         database = FirebaseDatabase.getInstance().getReference("users").child(userId)
@@ -80,13 +83,11 @@ class MessageFragment : Fragment() {
 
     private fun checkIfDataIsReady() {
         if (currentLat != 0.0 && currentLon != 0.0) {
-            // ✅ Fetch stories after location is ready
             storiesViewModel.fetchStories(currentUserId!!, currentLat, currentLon)
         }
     }
 
     private fun setupRecyclerViews() {
-        // ✅ Stories RecyclerView setup
         binding.storiesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 

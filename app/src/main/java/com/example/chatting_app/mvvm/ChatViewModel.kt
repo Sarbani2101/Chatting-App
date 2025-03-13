@@ -18,7 +18,6 @@ class ChatViewModel : ViewModel() {
     fun fetchChatList() {
         if (currentUserId == null) return
 
-        // ✅ Remove previous listeners before adding new ones
         database.child("chats").child(currentUserId).removeEventListener(chatEventListener)
 
         database.child("chats").child(currentUserId)
@@ -36,7 +35,6 @@ class ChatViewModel : ViewModel() {
                 val timestamp = childSnapshot.child("timestamp").getValue(Long::class.java) ?: 0L
                 val isRead = childSnapshot.child("isRead").getValue(Boolean::class.java) ?: false
 
-                // ✅ Fetch user details once
                 database.child("users").child(userId)
                     .addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(userSnapshot: DataSnapshot) {
@@ -54,12 +52,9 @@ class ChatViewModel : ViewModel() {
                             )
 
                             chatItems.add(chat)
-
-                            // ✅ Sort by timestamp (latest first)
                             chatItems.sortByDescending { it.timestamp }
 
-                            // ✅ Use postValue to update LiveData properly
-                            _chatList.postValue(chatItems)
+                            _chatList.postValue(chatItems) // ✅ Automatically updates UI
                         }
 
                         override fun onCancelled(error: DatabaseError) {}
