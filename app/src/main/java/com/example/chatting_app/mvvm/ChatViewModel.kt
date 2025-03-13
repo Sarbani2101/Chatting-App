@@ -18,8 +18,10 @@ class ChatViewModel : ViewModel() {
     fun fetchChatList() {
         if (currentUserId == null) return
 
+        // Clear existing listeners
         database.child("chats").child(currentUserId).removeEventListener(chatEventListener)
 
+        // Fetch chat data
         database.child("chats").child(currentUserId)
             .orderByChild("timestamp")
             .addValueEventListener(chatEventListener)
@@ -28,40 +30,54 @@ class ChatViewModel : ViewModel() {
     private val chatEventListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
             val chatItems = mutableListOf<Chat>()
+            val userIds = snapshot.children.map { it.key }.filterNotNull()
 
-            snapshot.children.forEach { childSnapshot ->
-                val userId = childSnapshot.key ?: return@forEach
-                val lastMessage = childSnapshot.child("lastMessage").getValue(String::class.java) ?: ""
-                val timestamp = childSnapshot.child("timestamp").getValue(Long::class.java) ?: 0L
-                val isRead = childSnapshot.child("isRead").getValue(Boolean::class.java) ?: false
-
-                database.child("users").child(userId)
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(userSnapshot: DataSnapshot) {
-                            val userName = userSnapshot.child("name").getValue(String::class.java) ?: "Unknown"
-                            val profileImage = userSnapshot.child("profileImage").getValue(String::class.java) ?: ""
-
-                            val chat = Chat(
-                                chatId = userId,
-                                receiverUid = userId,
-                                receiverName = userName,
-                                lastMessage = lastMessage,
-                                timestamp = timestamp,
-                                profileImageUrl = profileImage,
-                                isRead = isRead
-                            )
-
-                            chatItems.add(chat)
-                            chatItems.sortByDescending { it.timestamp }
-
-                            _chatList.postValue(chatItems) // ✅ Automatically updates UI
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {}
-                    })
+            if (userIds.isEmpty()) {
+                _chatList.postValue(chatItems)
+                return
             }
+
+            // Fetch users in a single call
+            database.child("users").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(userSnapshot: DataSnapshot) {
+                    userIds.forEach { userId ->
+                        val lastMessage = snapshot.child(userId).child("lastMessage").getValue(String::class.java) ?: ""
+                        val timestamp = snapshot.child(userId).child("timestamp").getValue(Long::class.java) ?: 0L
+                        val isRead = snapshot.child(userId).child("isRead").getValue(Boolean::class.java) ?: false
+
+                        val userInfo = userSnapshot.child(userId)
+                        val userName = userInfo.child("name").getValue(String::class.java) ?: "Unknown"
+                        val profileImage = userInfo.child("profileImage").getValue(String::class.java) ?: ""
+
+                        val chat = Chat(
+                            chatId = userId,
+                            receiverUid = userId,
+                            receiverName = userName,
+                            lastMessage = lastMessage,
+                            timestamp = timestamp,
+                            profileImageUrl = profileImage,
+                            isRead = isRead
+                        )
+
+                        chatItems.add(chat)
+                    }
+
+                    chatItems.sortByDescending { it.timestamp }
+                    _chatList.postValue(chatItems)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle error
+                    _chatList.postValue(emptyList())
+                    fetchChatList()
+                }
+            })
         }
 
-        override fun onCancelled(error: DatabaseError) {}
+        override fun onCancelled(error: DatabaseError) {
+            // Handle error
+            _chatList.postValue(emptyList())
+            fetchChatList()
+        }
     }
 }
